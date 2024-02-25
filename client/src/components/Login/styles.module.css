@@ -78,16 +78,30 @@
 	align-self: center;
 }
 
-.white_btn,
-.green_btn {
+.white_btn{
 	border: none;
 	outline: none;
 	padding: 12px 0;
-	background-color: white;
+	background-color:white;
 	border-radius: 20px;
 	width: 180px;
 	font-weight: bold;
 	font-size: 14px;
+	color: #3bb19b;
+	cursor: pointer;
+}
+
+
+.green_btn {
+	border: none;
+	outline: none;
+	padding: 12px 0;
+	background-color:white;
+	border-radius: 20px;
+	width: 180px;
+	font-weight: bold;
+	font-size: 14px;
+	color: black;
 	cursor: pointer;
 }
 
@@ -95,4 +109,7 @@
 	background-color: #3bb19b;
 	color: white;
 	margin: 10px;
+}
+.white_btn:hover{
+	color:white;
 }
