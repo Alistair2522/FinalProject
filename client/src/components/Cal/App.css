@@ -20,7 +20,7 @@
   
   .event-form input {
     margin: 10px 0;
-    padding: 8px;
+    padding: 8px; 
     width: 200px;
     border: 1px solid #3bb19b; /* Green border */
     border-radius: 5px;
