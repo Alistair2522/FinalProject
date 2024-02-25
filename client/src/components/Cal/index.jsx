@@ -1,88 +1,72 @@
 import { useState } from "react";
 import React, { useEffect } from 'react';
-import styles from "./styles.module.css";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
 import { Calendar, dateFnsLocalizer , momentLocalizer} from "react-big-calendar";
-import getDay from "date-fns/getDay";
 import moment from 'moment';
+import './App.css';
 import eventsData from './events.json';
-// const locales = {
-//     "en-IN": require("date-fns/locale/en-IN")
-// }
-// const localizer = dateFnsLocalizer({
-//     format,
-//     parse,
-//     startOfWeek,
-//     getDay,
-//     locales
-// })
-
-// const events = [
-//     {
-//         title: "Big Meeting",
-//         allDay: true,
-//         start: new Date(2024,2,0),
-//         end: new Date(2024,2,0)
-//     },
-//     {
-//         title: "Vacation",
-//         allDay: true,
-//         start: new Date(2024,1,25),
-//         end: new Date(2024,1,25)
-//     },
-//     {
-//         title: "Conference",
-//         allDay: true,
-//         start: new Date(2024,3,21),
-//         end: new Date(2024,3,21)
-//     },
-// ]
-
-// function Cal(){
-//     return(
-//         <div className="Cal">
-//             <Calendar localizer={localizer} events={events}
-//             startAccessor="start" endAccessor="end" style={{height:500, margin:"50px"}}/>
-//         </div>
-//     );
-// }
 
 
 const localizer = momentLocalizer(moment);
 
 const Cal = () => {
-    const [events, setEvents] = useState([]);
-    const handleAddEvent = (newEvent) => {
-        const updatedEvents = [...events, newEvent];
-        setEvents(updatedEvents);
-      
-        // Save updatedEvents to localStorage
-        localStorage.setItem('events', JSON.stringify(updatedEvents));
-      };
-      
-      // When the component mounts, retrieve events from localStorage
-      useEffect(() => {
-        const storedEvents = localStorage.getItem('events');
-        if (storedEvents) {
-          setEvents(JSON.parse(storedEvents));
-        }
-      }, []);
-    
+  const [events, setEvents] = useState([]);
+
+//   useEffect(() => {
+//     setEvents(eventsData);
+//   }, []);
+
+const eventStyleGetter = (event, start, end, isSelected) => {
+    const eventDate = moment(event.start);
+    const currentDate = moment();
+    const isPastEvent = eventDate.isBefore(currentDate, 'day');
+    const isCurrentDayEvent = eventDate.isSame(currentDate, 'day');
+
+    let style = {};
+    if (isPastEvent) {
+      style.backgroundColor = 'red';
+    } else if (isCurrentDayEvent) {
+      style.backgroundColor = 'green';
+    } else {
+      style.backgroundColor = 'blue';
+    }
+
+    return {
+      style: style
+    };
+  };
+  const handleAddEvent = (newEvent) => {
+    // Check for conflicting events
+    const isConflict = events.some(event => {
+      return (
+        (moment(newEvent.start).isSameOrAfter(event.start) && moment(newEvent.start).isBefore(event.end)) ||
+        (moment(newEvent.end).isAfter(event.start) && moment(newEvent.end).isSameOrBefore(event.end))
+      );
+    });
+
+    if (isConflict) {
+      alert('Conflicting event! Please select a different time.');
+      return;
+    }
+
+    const updatedEvents = [...events, newEvent];
+    setEvents(updatedEvents);
+  };
 
   return (
-    <div style={{ height: '500px' }}>
+    <div className="container">
       <EventForm onAddEvent={handleAddEvent} />
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ margin: '50px' }}
-      />
+      <div className="calendar">
+        <Calendar
+          localizer={localizer}
+          events={events}
+          startAccessor="start"
+          endAccessor="end"
+          views={['month', 'week', 'day','agenda']}
+          style={{ height: 500 }}
+          eventPropGetter={eventStyleGetter}
+        />
+      </div>
     </div>
   );
 };
@@ -106,7 +90,7 @@ const EventForm = ({ onAddEvent }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="event-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Event Title"
@@ -129,4 +113,7 @@ const EventForm = ({ onAddEvent }) => {
 };
 
 
+
 export default Cal;
+
+
