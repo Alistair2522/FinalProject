@@ -46,3 +46,7 @@ To run Event Harbour on your local machine, follow these steps:
    cd client
    npm run
    npm start
+
+**Youtube Link**
+```bash
+https://drive.google.com/file/d/1fLsnr1Dp4D-gJnYL8_jUBWGeyyf35vUj/view?usp=sharing
