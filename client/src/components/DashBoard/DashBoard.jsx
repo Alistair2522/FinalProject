@@ -4,6 +4,7 @@ import VerticalNavbar from './VerticalNavbar';
 import './DashBoard.css';
 import './VerticalNavbar.css';
 import SchedulingForm from './SchedulingForm'; // Rename SchedulingModal to SchedulingForm
+import Venues from './Venues'; // Import the Venues component
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
       <div className="dashboard-content">
         <SchedulingForm />
         {/* Other content of the dashboard */}
+        <Venues /> {/* Include the Venues component here */}
       </div>
     </div>
   );
