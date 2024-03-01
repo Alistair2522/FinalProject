@@ -77,6 +77,15 @@ const Document = () => {
                                 <w:t>${yourName}</w:t>
                             </w:r>
                         </w:p>
+                        <w:p>
+                        <w:r>
+                            <w:pict>
+                                <v:shape id="_x0000_s1026" type="#_x0000_t75" style="width:300pt;height:150pt">
+                                    <v:imagedata src="client/src/components/Document/signature.png"/>
+                                </v:shape>
+                            </w:pict>
+                        </w:r>
+                    </w:p>
                     </w:body>
                 </w:document>
             `;
@@ -89,9 +98,10 @@ const Document = () => {
 
             // Add necessary XML files for a valid docx structure
             zip.file('[Content_Types].xml', `
-                <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-                    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
-                </Types>
+            <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+                <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+                <Override PartName="/word/media/signature" ContentType="image/png"/>
+            </Types>
             `);
             zip.file('_rels/.rels', `
                 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
@@ -101,9 +111,9 @@ const Document = () => {
             zip.file('word/_rels/document.xml.rels', `
                 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
                     <Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml" Id="rId1"/>
+                    <Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/signature" Id="rId2"/>
                 </Relationships>
             `);
-
             // Generate the .docx file
             const docxBlob = await zip.generateAsync({ type: 'blob' });
 
