@@ -4,7 +4,6 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Cal from "./components/Cal";
 import Dashboard from "./components/DashBoard/DashBoard";
-import Admin from "./components/Admin";
 function App() {
   const user = localStorage.getItem("token");
 
@@ -16,7 +15,6 @@ function App() {
       <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="/cal" exact element={<Cal />} />
       <Route path="/DashBoard" exact element={<Dashboard />} />
-      <Route path="/Admin" exact element={<Admin />} />
     </Routes>
   );
 }
