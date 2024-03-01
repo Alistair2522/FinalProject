@@ -1,4 +1,3 @@
-// Import required modules
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -31,6 +30,7 @@ mongoose
 const batataBoysSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
+  role: String,
   email: String,
   password: String, // Store password as plain text
 });
@@ -41,13 +41,14 @@ const BatataBoys = mongoose.model("Batata_boys", batataBoysSchema);
 app.post("/api/users", async (req, res) => {
   try {
     // Extract data from request body
-    const { firstName, lastName, email, password } = req.body;
+    const { role, firstName, lastName, email, password } = req.body;
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10); // 10 is the saltRounds
 
     // Create a new user instance with hashed password
     const newUser = new BatataBoys({
+      role,
       firstName,
       lastName,
       email,
@@ -86,7 +87,26 @@ app.post("/api/auth", async (req, res) => {
     }
 
     // Authentication successful
-    res.status(200).json({ message: "Login successful" });
+    // Check user role and redirect accordingly
+    let redirectUrl;
+    switch (user.role) {
+      case "HOD":
+        redirectUrl = "/src/components/Cal/index.js";
+        break;
+      case "commleader":
+        redirectUrl = "/src/components/Cal/index.js";
+        break;
+      case "student":
+        redirectUrl = "/src/components/Cal/index.js";
+        break;
+      default:
+        redirectUrl = "/"; // Default redirect
+        break;
+    }
+
+    res
+      .status(200)
+      .json({ message: "Login successful", redirectTo: redirectUrl });
   } catch (error) {
     console.error("Error during authentication:", error);
     res.status(500).json({ message: "Internal server error" });

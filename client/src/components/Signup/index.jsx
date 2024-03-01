@@ -67,6 +67,18 @@ const Signup = () => {
                             required
                             className={styles.input}
                         />
+                        <select
+                                name="role"
+                                onChange={handleChange}
+                                value={data.role}
+                                required
+                                className={styles.input}
+                            >
+                                <option value="">Select Role</option>
+                                <option value="HOD">HOD</option>
+                                <option value="commleader">Committee Leader</option>
+                                <option value="student">Student</option>
+                            </select>
                         <input
                             type="email"
                             placeholder="Email"
