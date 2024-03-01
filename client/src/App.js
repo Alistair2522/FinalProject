@@ -23,7 +23,7 @@ function App() {
       <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="/calendar/:floor" element={<Calc />} />
       <Route path="/calendar" element={<Cal_no_input />} />
-      <Route path="/cal" element={<Cal />} />
+      <Route path="/cal" element={<Cal />} /> 
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<Venues />} />
         {/* Add more routes under /dashboard as needed */}
