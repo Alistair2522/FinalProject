@@ -11,6 +11,7 @@ import Dashboard from "./components/DashBoard/DashBoard";
 import Calc from "./components/Rooms/cal";
 import Venues from "./components/DashBoard/Venues";
 import Cal_no_input from "./components/Cal/Cal_no_input";
+import Document from "./components/Document";
 
 function App() {
   const user = localStorage.getItem("token");

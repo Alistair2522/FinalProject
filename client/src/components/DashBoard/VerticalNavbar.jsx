@@ -8,6 +8,7 @@ const VerticalNavbar = () => {
       <Link to="/dashboard" className="nav-link">Home</Link>
       <Link to="/dashboard/SEvent" className="nav-link">Schedule Event</Link>
       <Link to="/dashboard/settings" className="nav-link">Settings</Link>
+      <Link to="/cal" className="nav-link">Calendar</Link>
       {/* Add more links as needed */}
     </div>
   );

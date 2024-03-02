@@ -3,6 +3,8 @@ import Docxtemplater from 'docxtemplater';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import headerImage from './signature.png';
+import twilioCredentials from './twilioCredentials';
+
 
 const Document = () => {
     const [inchargeName, setInchargeName] = useState('');
@@ -41,10 +43,9 @@ const Document = () => {
                     clubName,
                     yourName,
                     image: { // Add the image data
+                        data: headerImage, // Provide the image data
                         width: 200, // Adjust width as per your requirement
                         height: 100, // Adjust height as per your requirement
-                        data: headerImage, // Provide the image data
-                        extension: '.png', // Adjust extension based on your image type
                     },
                 });
 
@@ -59,9 +60,31 @@ const Document = () => {
             };
 
             // Read the Word document template file
-            fileReader.readAsArrayBuffer(templateFile); // Assuming you have the template file stored somewhere
+            fileReader.readAsArrayBuffer("template.docx"); // Assuming you have the template file stored somewhere
         } catch (error) {
             console.error('Error generating document:', error);
+        }
+    };
+    const sendWhatsAppMessage = async () => {
+        try {
+            // Form Twilio WhatsApp message data
+            const formData = new FormData();
+            formData.append('From', 'whatsapp:' + twilioCredentials.whatsappNumber);
+            formData.append('To', 'whatsapp:' + 7506189978); // Replace recipientNumber with the recipient's WhatsApp number
+            formData.append('Body', 'Your message here');
+
+            // Send WhatsApp message via Twilio
+            await fetch('https://api.twilio.com/2010-04-01/Accounts/' + twilioCredentials.accountSid + '/Messages.json', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + btoa(twilioCredentials.accountSid + ':' + twilioCredentials.authToken),
+                },
+                body: formData,
+            });
+
+            console.log('WhatsApp message sent successfully');
+        } catch (error) {
+            console.error('Error sending WhatsApp message:', error);
         }
     };
 
@@ -128,6 +151,7 @@ const Document = () => {
                 placeholder="Your Name"
             />
             <button onClick={generateDocument}>Generate Document</button>
+            <button onClick={sendWhatsAppMessage}>Send WhatsApp Message</button>
         </div>
     );
 };
