@@ -27,6 +27,7 @@ const EmailForm = () => {
       .then((response) => {
         console.log('Email sent successfully!', response);
         setName('');
+        setCommittee('');
         setEmail('');
         setMessage('');
       })
@@ -47,7 +48,7 @@ const EmailForm = () => {
         type="Committee Name"
         placeholder="Your Committee Name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setCommittee(e.target.value)}
         />
       <input
         type="email"
