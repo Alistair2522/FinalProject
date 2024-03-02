@@ -44,12 +44,7 @@ const EmailForm = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
-        type="Committee Name"
-        placeholder="Your Committee Name"
-        value={name}
-        onChange={(e) => setCommittee(e.target.value)}
-        />
+
       <input
         type="email"
         placeholder="Your Email"
