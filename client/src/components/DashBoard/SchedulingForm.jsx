@@ -309,8 +309,13 @@ const SchedulingForm = () => {
         </label>
 
       </div>
-
+    
       <button onClick={generateDocument} type="submit">Submit</button>
+
+      
+      <link to ='/email'>    
+      <button type="submit" className="send-email-button">Send Email</button>
+      </link>
     </form>
   );
   };
