@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Route, Routes, Navigate, useParams } from "react-router-dom";
-import Main from "./components/Main";
+import Main from "./components/Main/index";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Cal from "./components/Cal";
@@ -20,7 +20,7 @@ function App() {
       {user && <Route path="/" element={<Main />} />}
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Navigate replace to="/login" />} />
+      <Route path="/" element={<Main />} />
       <Route path="/calendar/:floor" element={<Calc />} />
       <Route path="/calendar" element={<Cal_no_input />} />
       <Route path="/cal" element={<Cal />} />
