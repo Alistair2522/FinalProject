@@ -15,5 +15,23 @@
 }
 
 #image {
-  margin-left: 200px;
+  margin-left: 100px;
+}
+
+.image-container {
+  background-color: lightgreen; /* Add background color */
+  border-radius: 20px; /* Add border-radius for curved border */
+  overflow: hidden; /* Hide overflow to make sure the curved border is visible */
+}
+
+.curved-border {
+  border-radius: 20px; /* Add border-radius for curved border */
+}
+.image-container {
+  flex: 0 0 auto; /* Set to auto so it doesn't grow */
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.text-container {
+  flex: 1; /* Expand to fill remaining space */
 }

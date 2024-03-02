@@ -4,7 +4,7 @@ import './SchedulingForm.css';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import signatureImage from './signature.png';
-
+import twilioCredentials from './twilioCredentials';
 
 const SchedulingForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -138,6 +138,28 @@ const SchedulingForm = () => {
             console.error('Error generating document:', error);
         }
     };
+    const sendWhatsAppMessage = async () => {
+      try {
+          // Form Twilio WhatsApp message data
+          const formData = new FormData();
+          formData.append('From', 'whatsapp:' + twilioCredentials.whatsappNumber);
+          formData.append('To', 'whatsapp:' + "whatsapp:+1 (415) 523-8886"); // Replace recipientNumber with the recipient's WhatsApp number
+          formData.append('Body', 'New event request');
+
+          // Send WhatsApp message via Twilio
+          await fetch('https://api.twilio.com/2010-04-01/Accounts/' + twilioCredentials.accountSid + '/Messages.json', {
+              method: 'POST',
+              headers: {
+                  'Authorization': 'Basic ' + btoa(twilioCredentials.accountSid + ':' + twilioCredentials.authToken),
+              },
+              body: formData,
+          });
+
+          console.log('WhatsApp message sent successfully');
+      } catch (error) {
+          console.error('Error sending WhatsApp message:', error);
+      }
+  };
 
 
 
@@ -316,6 +338,7 @@ const SchedulingForm = () => {
       <link to ='/email'>    
       <button type="submit" className="send-email-button">Send Email</button>
       </link>
+
     </form>
   );
   };
