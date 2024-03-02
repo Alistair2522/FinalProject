@@ -24,10 +24,10 @@ const Login = () => {
           window.location = "/cal";
           break;
         case "Committee Leader":
-          window.location = "/cal";
+          window.location = "/dashboard";
           break;
         case "Student":
-          window.location = "/cal";
+          window.location = "/";
           break;
         default:
           window.location = "/";

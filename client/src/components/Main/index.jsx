@@ -18,7 +18,7 @@ const Main = () => {
 
   return (
 	<>
-	<div className="gradient-background eb-garamond-main">
+	<div className=" eb-garamond-main" style={{ backgroundColor: "#C5EBAA" }}>
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
         <h1 id="eb-garamond-main">Event Harbor</h1>
@@ -34,35 +34,40 @@ const Main = () => {
       </nav>
     </div>
 
-	<div className="mt-4 d-flex justify-content-center">
-  
-      <Figure >
-        
-        <Figure.Image
-          width={800}
-          height={600}
-          id="image"
-          alt="171x180"
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        
-        />
-        
-        
-        <Figure.Caption id="assistant-para">
-          Different committees need a way to set up events and get approvals from the right college departments.
-          <br />
-          Students should also have a way to join in on these events and stay in the loop about what's happening on campus.
-          <br />
-          Committees should be able to check out when rooms and venues are available so that events don't accidentally overlap.
-        </Figure.Caption>
-      </Figure>
-    </div>
+    <div className="mt-4 pt-5 d-flex justify-content-center">
+  <div className="image-container">
+    <Figure>
+      <Figure.Image
+        width={600}
+        height={400}
+        id="image"
+        alt="171x180"
+        src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        className="curved-border"
+      />
+    </Figure>
+  </div>
+  <div className="text-container">
+    <Figure.Caption id="assistant-para">
+      <br/>
+      <br/>
+      
+      Different committees need a way to set up events and get approvals from the right college departments.
+      <br />
+      Students should also have a way to join in on these events and stay in the loop about what's happening on campus.
+      <br />
+      Committees should be able to check out when rooms and venues are available so that events don't accidentally overlap.
+    </Figure.Caption>
+  </div>
+</div>
+
+
     
 
 
 
 
-    <div className="mt-4 d-flex justify-content-center">
+    <div className="mt-5 pt-5 d-flex justify-content-center">
 	<Card style={{ width: '18rem', margin: '0 10px 20px 10px' }}>
   <Card.Img
     variant="top"
