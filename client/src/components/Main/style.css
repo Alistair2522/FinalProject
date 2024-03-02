@@ -1,0 +1,37 @@
+#eb-garamond-main {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 3rem;
+}
+
+#assistant-para {
+  font-family: "Assistant", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+}
+
+#image {
+  margin-left: 100px;
+}
+
+.image-container {
+  background-color: lightgreen; /* Add background color */
+  border-radius: 20px; /* Add border-radius for curved border */
+  overflow: hidden; /* Hide overflow to make sure the curved border is visible */
+}
+
+.curved-border {
+  border-radius: 20px; /* Add border-radius for curved border */
+}
+.image-container {
+  flex: 0 0 auto; /* Set to auto so it doesn't grow */
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.text-container {
+  flex: 1; /* Expand to fill remaining space */
+}
