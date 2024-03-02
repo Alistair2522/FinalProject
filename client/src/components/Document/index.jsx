@@ -4,6 +4,8 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import headerImage from './signature.png';
 
+import headerImage from './headerImage.jpg'; // Import the header image
+
 const Document = () => {
     const [inchargeName, setInchargeName] = useState('');
     const [inchargeBranch, setInchargeBranch] = useState('');
@@ -41,10 +43,9 @@ const Document = () => {
                     clubName,
                     yourName,
                     image: { // Add the image data
+                        data: headerImage, // Provide the image data
                         width: 200, // Adjust width as per your requirement
                         height: 100, // Adjust height as per your requirement
-                        data: headerImage, // Provide the image data
-                        extension: '.png', // Adjust extension based on your image type
                     },
                 });
 
