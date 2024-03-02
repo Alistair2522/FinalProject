@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Cal from "./components/Cal";
 import Dashboard from "./components/DashBoard/DashBoard";
-
+import EmailForm from "./components/Email/EmailForm";
 import Calc from "./components/Rooms/cal";
 import Venues from "./components/DashBoard/Venues";
 import Cal_no_input from "./components/Cal/Cal_no_input";
@@ -24,8 +24,12 @@ function App() {
       <Route path="/" element={<Main />} />
       <Route path="/calendar/:floor" element={<Calc />} />
       <Route path="/calendar" element={<Cal_no_input />} />
+      <Route path="/email" element={<EmailForm />} />
       <Route path="/cal" element={<Cal />} /> 
       <Route path="/dashboard" element={<Dashboard />}>
+      
+
+
         <Route index element={<Venues />} />
         {/* Add more routes under /dashboard as needed */}
       </Route>
