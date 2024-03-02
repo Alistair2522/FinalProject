@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const Login = () => {
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({ email: "", password: "", role: "" });
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }) => {
@@ -17,7 +17,22 @@ const Login = () => {
       const url = "http://localhost:8080/api/auth";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
-      window.location = "/"; // Redirect to the home page
+      
+      // Redirect based on user role
+      switch (data.role) {
+        case "HOD":
+          window.location = "/cal";
+          break;
+        case "Committee Leader":
+          window.location = "/dashboard";
+          break;
+        case "Student":
+          window.location = "/";
+          break;
+        default:
+          window.location = "/";
+          break;
+      }
     } catch (error) {
       if (
         error.response &&
@@ -35,6 +50,18 @@ const Login = () => {
         <div className={styles.left}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
             <h1>Login to Your Account</h1>
+            <select
+              name="role"
+              onChange={handleChange}
+              value={data.role}
+              required
+              className={styles.input}
+            >
+              <option value="">Select Role</option>
+              <option value="HOD">HOD</option>
+              <option value="Committee Leader">Committee Leader</option>
+              <option value="Student">Student</option>
+            </select>
             <input
               type="email"
               placeholder="Email"
@@ -53,6 +80,7 @@ const Login = () => {
               required
               className={styles.input}
             />
+            
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
               Sign In
