@@ -5,6 +5,7 @@ import css from './EmailForm.css';
 const EmailForm = () => {
 
   const [name, setName] = useState('');
+  const [committee, setCommittee]=useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -27,6 +28,7 @@ const EmailForm = () => {
       .then((response) => {
         console.log('Email sent successfully!', response);
         setName('');
+        setCommittee('');
         setEmail('');
         setMessage('');
       })
@@ -43,12 +45,6 @@ const EmailForm = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
-        type="Committee Name"
-        placeholder="Your Committee Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        />
       <input
         type="email"
         placeholder="Your Email"

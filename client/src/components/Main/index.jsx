@@ -23,13 +23,15 @@ const Main = () => {
       <nav className={styles.navbar}>
         <h1 id="eb-garamond-main">Event Harbor</h1>
         <div className={styles.nav_buttons}>
-          <Link to="/cal">
+          <Link to="/calendar">
 		  <button className={styles.white_btn} style={{ color: 'black' }}>Calendar</button>
 
           </Link>
-          <button className={styles.white_btn} style={{ color: 'black' }} onClick={handleLogout}>
-            Logout
+          <Link to="/dashboard">    
+          <button className={styles.white_btn} style={{ color: 'black' }} >
+            Admin
           </button>
+          </Link>
         </div>
       </nav>
     </div>
@@ -80,7 +82,7 @@ const Main = () => {
       Be updated with the upcoming and ongoing events using our calendar.
     </Card.Text>
     <div style={{ position: 'relative', marginTop: 'auto', paddingLeft: '10px' }}>
-      <Link to="/cal">
+      <Link to="/calendar">
         <Button variant="primary">Calendar</Button>
       </Link>
     </div>
@@ -102,7 +104,7 @@ const Main = () => {
     </Card.Text>
     <div style={{ position: 'relative', marginTop: 'auto', paddingLeft: '10px' }}>
       <Link to="/cal">
-        <Button variant="primary">Register</Button>
+        {/* <Button variant="primary">Register</Button> */}
       </Link>
     </div>
   </Card.Body>
@@ -121,7 +123,7 @@ const Main = () => {
     </Card.Text>
     <div style={{ position: 'relative', marginTop: 'auto', paddingLeft: '10px' }}>
       <Link to="/cal">
-        <Button variant="primary">Committee</Button>
+        {/* <Button variant="primary">Committee</Button> */}
       </Link>
     </div>
   </Card.Body>

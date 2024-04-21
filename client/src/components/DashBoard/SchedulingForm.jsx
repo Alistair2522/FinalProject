@@ -333,7 +333,6 @@ const SchedulingForm = () => {
       </div>
 
       <button onClick={generateDocument} type="submit">Submit</button>
-      <button onClick={sendWhatsAppMessage}>Send WhatsApp Message</button>
     </form>
   );
   };
